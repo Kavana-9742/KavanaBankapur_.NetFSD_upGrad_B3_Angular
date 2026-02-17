@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Enrollment Form </title>
+</head>
+<body>
+    <header>
+        <h1>Online Learning Platform</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Course Enrollment Form</h2>
+            <hr>
+
+            <form action="#" method="post">
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email"
+                placeholder="example@gmail.com" required>
+                <br><br>
+
+                <label for="course">Select Course:</label><br>
+                <input list="courses" id="course" name="course"
+                placeholder="Choose a course" required>
+
+                <datalist id="courses">
+                    <option value="HTML Fundamentals">
+                    <option value="CSS Mastery">
+                    <option value="Javascript Basics">
+                    <option value="Angular">
+                    <option value="Full stack web development">
+                </datalist>
+                <br><br>
+
+                <label for="skill">Skill Level(1-Beginner, 10-Advanced):</label><br>
+                <input type="range" id="skill" name="skill" min="1"
+                max="10" value="5">
+                <br><br>
+
+                <label for="experience">Years of Experience:</label><br>
+                <input type="number" id="experience" name="experience"
+                min="0" max="20" required>
+                <br><br>
+
+                <label>Skill Level Indicator:</label><br>
+                <meter min="0" max="10" value="2"></meter>
+                <br><br>
+
+                <label>Enrollment Completion:</label><br>
+                <progress value="50" max="100"></progress>
+                <br><br>
+
+                <button type="submit">Enroll Now</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p>&copy; 2026 Online Learning Platform</p>
+    </footer>
+    
+</body>
+</html>
