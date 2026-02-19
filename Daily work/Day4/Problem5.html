@@ -9,7 +9,6 @@
     <h1>Number Analysis Tool</h1>
     <hr/>
 
-    <!-- Input Section -->
     <label>Enter a Number:</label>
     <input type="number" id="num">
     <button onclick="analyzeNumber()">Analyze</button>
@@ -25,11 +24,9 @@
 
             let output = "";
 
-            // 1️⃣ Positive or Negative (Ternary)
             let result = (num >= 0) ? "Positive Number" : "Negative Number";
             output += result + "<br>";
 
-            // 2️⃣ Even or Odd (if–else)
             if (num % 2 === 0) {
                 output += "Even Number<br>";
             }
@@ -37,7 +34,6 @@
                 output += "Odd Number<br>";
             }
 
-            // 3️⃣ Print numbers in range
             output += "Numbers in range:<br>";
 
             if (num > 0) {
@@ -58,3 +54,4 @@
 
 </body>
 </html>
+
