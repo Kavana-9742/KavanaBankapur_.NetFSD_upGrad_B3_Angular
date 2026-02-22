@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Info Display</title>
+</head>
+<body>
+
+    <h2>User Information</h2>
+
+    <input type="text" id="username" placeholder="Enter Name"><br><br>
+    <input type="number" id="userage" placeholder="Enter Age"><br><br>
+    <input type="text" id="usercity" placeholder="Enter City"><br><br>
+
+    <button onclick="handleDisplay()">Display User Info</button>
+
+    <p id="name"></p>
+    <p id="age"></p>
+    <p id="city"></p>
+
+    <script>
+
+        function displayUserInfo(userObj) {
+
+            document.getElementById("name").innerHTML = "Name: " + userObj.name;
+            document.getElementById("age").innerHTML = "Age: " + userObj.age;
+            document.getElementById("city").innerHTML = "City: " + userObj.city;
+        }
+
+        function handleDisplay() {
+
+            var nameValue = document.getElementById("username").value;
+            var ageValue = document.getElementById("userage").value;
+            var cityValue = document.getElementById("usercity").value;
+
+            var user = {
+                name: nameValue,
+                age: ageValue,
+                city: cityValue
+            };
+
+            displayUserInfo(user);
+        }
+
+    </script>
+
+</body>
+</html>
