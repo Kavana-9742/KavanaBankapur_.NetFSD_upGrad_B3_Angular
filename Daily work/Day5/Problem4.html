@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile Manager</title>
+    <style>
+        .profile-card {
+            width: 300px;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background-color: #f2f2f2;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Profile Manager</h2>
+
+    <input type="text" id="studentName" placeholder="Enter Name"><br><br>
+    <input type="number" id="rollNo" placeholder="Enter Roll Number"><br><br>
+    <input type="number" id="marks" placeholder="Enter Marks"><br><br>
+
+    <button id="createProfileBtn">Create Profile</button>
+
+    <br><br>
+
+    <input type="number" id="newMarks" placeholder="Enter New Marks">
+    <button id="updateMarksBtn">Update Marks</button>
+
+    <div id="profileContainer"></div>
+
+    <script>
+
+        var student = {};
+
+        function updateStudentProfile(studentObj) {
+
+            var profileDiv = document.getElementById("profileContainer");
+
+            profileDiv.innerHTML =
+                "<div class='profile-card'>" +
+                "<p><strong>Name:</strong> " + studentObj.name + "</p>" +
+                "<p><strong>Roll No:</strong> " + studentObj.rollNo + "</p>" +
+                "<p><strong>Marks:</strong> " + studentObj.marks + "</p>" +
+                "</div>";
+        }
+
+        function updateMarks(newMarks) {
+            student.marks = newMarks;
+            updateStudentProfile(student);
+        }
+
+        document.getElementById("createProfileBtn").addEventListener("click", function() {
+
+            student.name = document.getElementById("studentName").value;
+            student.rollNo = document.getElementById("rollNo").value;
+            student.marks = document.getElementById("marks").value;
+
+            updateStudentProfile(student);
+        });
+
+        document.getElementById("updateMarksBtn").addEventListener("click", function() {
+
+            var marksValue = document.getElementById("newMarks").value;
+            updateMarks(marksValue);
+
+        });
+
+    </script>
+
+</body>
+</html>
