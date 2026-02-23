@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Logger</title>
+</head>
+<body onload="loadHistory()">
+
+    <h2>📍 Location-Based Logger</h2>
+
+    <button onclick="getLocation()">Get My Location</button>
+
+    <h3>Current Location:</h3>
+    <p id="currentLocation"></p>
+
+    <h3>Last 5 Locations:</h3>
+    <ul id="historyList"></ul>
+
+    <script>
+
+        function getLocation() {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    successCallback, errorCallback, { timeout: 10000 });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function successCallback(position) {
+
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            let locationData = {
+                lat: latitude,
+                lon: longitude,
+                time: new Date().toLocaleString()
+            };
+
+            document.getElementById("currentLocation").innerHTML =
+                "Latitude: " + latitude + "<br>Longitude: " + longitude;
+
+            saveLocation(locationData);
+        }
+
+        function errorCallback(error) {
+
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Permission denied by user.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("Location request timed out.");
+                    break;
+                default:
+                    alert("An unknown error occurred.");
+            }
+        }
+
+        function saveLocation(newLocation) {
+
+            let history = JSON.parse(localStorage.getItem("locationHistory")) || [];
+
+            history.unshift(newLocation); 
+
+            if (history.length > 5) {
+                history.pop();
+            }
+
+            localStorage.setItem("locationHistory", JSON.stringify(history));
+
+            displayHistory();
+        }
+
+        function loadHistory() {
+            displayHistory();
+        }
+
+        function displayHistory() {
+
+            let history = JSON.parse(localStorage.getItem("locationHistory")) || [];
+
+            let list = document.getElementById("historyList");
+            list.innerHTML = "";
+
+            history.forEach(function(loc) {
+                let li = document.createElement("li");
+                li.innerHTML =
+                    "Lat: " + loc.lat + ", Lon: " + loc.lon + " (" + loc.time + ")";
+                list.appendChild(li);
+            });
+        }
+
+    </script>
+
+</body>
+</html>
