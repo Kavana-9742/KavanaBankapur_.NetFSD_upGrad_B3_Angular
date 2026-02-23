@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Form Validation</title>
+</head>
+<body>
+
+    <h2>Registration Form</h2>
+
+    <form>
+
+        Name: <br>
+        <input type="text" id="name" onchange="validateName()">
+        <span id="nameMsg"></span>
+        <br><br>
+
+        Email: <br>
+        <input type="text" id="email" onchange="validateEmail()">
+        <span id="emailMsg"></span>
+        <br><br>
+
+        Age: <br>
+        <input type="number" id="age" onchange="validateAge()">
+        <span id="ageMsg"></span>
+        <br><br>
+
+        <button type="button" onclick="saveData()">Register</button>
+
+    </form>
+
+    <script>
+
+        let isNameValid = false;
+        let isEmailValid = false;
+        let isAgeValid = false;
+
+        function validateName() {
+            let name = document.getElementById("name").value;
+            let message = document.getElementById("nameMsg");
+
+            if (name.trim() === "") {
+                message.innerHTML = " Name cannot be empty";
+                message.style.color = "red";
+                isNameValid = false;
+            } else {
+                message.innerHTML = " Valid Name";
+                message.style.color = "green";
+                isNameValid = true;
+            }
+        }
+
+        function validateEmail() {
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("emailMsg");
+
+            if (email.includes("@")) {
+                message.innerHTML = " Valid Email";
+                message.style.color = "green";
+                isEmailValid = true;
+            } else {
+                message.innerHTML = " Email must contain @";
+                message.style.color = "red";
+                isEmailValid = false;
+            }
+        }
+
+        function validateAge() {
+            let age = document.getElementById("age").value;
+            let message = document.getElementById("ageMsg");
+
+            if (age > 18) {
+                message.innerHTML = " Eligible";
+                message.style.color = "green";
+                isAgeValid = true;
+            } else {
+                message.innerHTML = " Age must be greater than 18";
+                message.style.color = "red";
+                isAgeValid = false;
+            }
+        }
+
+        function saveData() {
+
+            if (isNameValid && isEmailValid && isAgeValid) {
+
+                sessionStorage.setItem("userName", document.getElementById("name").value);
+                sessionStorage.setItem("userEmail", document.getElementById("email").value);
+                sessionStorage.setItem("userAge", document.getElementById("age").value);
+
+                alert("Data stored successfully in sessionStorage!");
+            } 
+            else {
+                alert("Please correct the errors before submitting.");
+            }
+        }
+
+    </script>
+
+</body>
+</html>
