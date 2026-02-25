@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager - Async Evolution</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 65%;
+            padding: 6px;
+        }
+
+        button {
+            padding: 6px 10px;
+            margin: 5px 2px;
+            cursor: pointer;
+        }
+
+        ul {
+            margin-top: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Task Manager</h3>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTaskAsyncVersion()">Add Task</button>
+    <button onclick="showTasksAsync()">List Tasks</button>
+
+    <ul id="taskList"></ul>
+    <div class="status" id="status"></div>
+</div>
+
+<script>
+
+    let tasks = [];
+
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+    const statusDiv = document.getElementById("status");
+
+    const addTaskCallback = (task, callback) => {
+        setTimeout(() => {
+            tasks.push(task);
+            callback(`Task "${task}" added (Callback Version)`);
+        }, 1000);
+    };
+
+    const listTasksCallback = (callback) => {
+        setTimeout(() => {
+            callback(tasks);
+        }, 1000);
+    };
+
+    const addTaskPromise = (task) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                tasks.push(task);
+                resolve(`Task "${task}" added (Promise Version)`);
+            }, 1000);
+        });
+    };
+
+    const listTasksPromise = () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(tasks);
+            }, 1000);
+        });
+    };
+
+    const deleteTaskPromise = (index) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                tasks.splice(index, 1);
+                resolve("Task deleted (Promise Version)");
+            }, 1000);
+        });
+    };
+
+    const addTaskAsync = async (task) => {
+        const message = await addTaskPromise(task);
+        return message;
+    };
+
+    const listTasksAsync = async () => {
+        const data = await listTasksPromise();
+        return data;
+    };
+
+    const deleteTaskAsync = async (index) => {
+        const message = await deleteTaskPromise(index);
+        return message;
+    };
+
+    const addTaskAsyncVersion = async () => {
+        const task = taskInput.value.trim();
+
+        if (!task) {
+            alert("Please enter a task");
+            return;
+        }
+
+        statusDiv.innerText = "Adding task...";
+
+        const message = await addTaskAsync(task);
+
+        statusDiv.innerText = message;
+        taskInput.value = "";
+
+        showTasksAsync();
+    };
+
+    const showTasksAsync = async () => {
+        statusDiv.innerText = "Loading tasks...";
+
+        const data = await listTasksAsync();
+
+        taskList.innerHTML = "";
+
+        data.forEach((task, index) => {
+            taskList.innerHTML += `
+                <li>
+                    ${index + 1}. ${task}
+                    <button onclick="deleteTaskUI(${index})">Delete</button>
+                </li>
+            `;
+        });
+
+        statusDiv.innerText = "Tasks loaded successfully";
+    };
+
+    const deleteTaskUI = async (index) => {
+        statusDiv.innerText = "Deleting task...";
+
+        const message = await deleteTaskAsync(index);
+
+        statusDiv.innerText = message;
+
+        showTasksAsync();
+    };
+
+</script>
+
+</body>
+</html>
