@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Feedback</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 70px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .success {
+            margin-top: 10px;
+            color: green;
+        }
+
+        .error {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Feedback Form</h3>
+
+    <textarea id="feedbackInput" placeholder="Write your feedback..."></textarea>
+    <button id="submitBtn">Submit Feedback</button>
+
+    <div id="messageArea"></div>
+</div>
+
+<script>
+
+    const submitBtn = document.getElementById("submitBtn");
+    const feedbackInput = document.getElementById("feedbackInput");
+    const messageArea = document.getElementById("messageArea");
+
+    submitBtn.addEventListener("click", () => {
+
+        const feedbackText = feedbackInput.value.trim();
+
+        if (feedbackText === "") {
+            messageArea.innerHTML = `
+                <p class="error">⚠ Please write some feedback before submitting.</p>
+            `;
+        } else {
+            messageArea.innerHTML = `
+                <p class="success">
+                    Thank you for your feedback
+                </p>
+            `;
+
+            feedbackInput.value = "";
+        }
+    });
+
+</script>
+
+</body>
+</html>
