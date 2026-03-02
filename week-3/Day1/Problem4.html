@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T0-Do List</title>
+</head>
+<body>
+
+	<h3>To-Do List Web Page</h3>
+	<hr/>
+
+	Enter Task:
+	<input type="text" id="taskInput" />
+	<input type="button" id="addBtn" value="Add Task" />
+	<br/><br/>
+
+	<h4>Total Tasks: <span id="totalCount">0</span></h4>
+	<h4>Completed Tasks: <span id="completedCount">0</span></h4>
+	<hr/>
+
+	<ul id="taskList"></ul>
+
+	<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+	<script>
+		$(document).ready(function()
+		{
+			let total = 0;
+			let completed = 0;
+			$("#addBtn").click(function()
+			{
+				let taskText = $("#taskInput").val().trim();
+				if(taskText !== "")
+				{
+					$("#taskList").append(
+						"<li class='taskItem'>" +
+						"<span class='taskText'>" + taskText + "</span> " +
+						"<button class='completeBtn'>Complete</button> " +
+						"<button class='deleteBtn'>Delete</button>" +
+						"</li>"
+					);
+
+					total++;
+					$("#totalCount").text(total);
+
+					$("#taskInput").val("");
+				}
+			});
+			$("#taskList").on("click", ".completeBtn", function()
+			{
+				$(this).siblings(".taskText").toggleClass("done");
+
+				if($(this).siblings(".taskText").hasClass("done"))
+				{
+					completed++;
+				}
+				else
+				{
+					completed--;
+				}
+
+				$("#completedCount").text(completed);
+			});
+			$("#taskList").on("click", ".deleteBtn", function()
+			{
+				let isCompleted = $(this).siblings(".taskText").hasClass("done");
+
+				if(isCompleted)
+				{
+					completed--;
+					$("#completedCount").text(completed);
+				}
+
+				total--;
+				$("#totalCount").text(total);
+
+				$(this).parent().remove();
+			});
+		});
+	</script>
+
+	<style>
+		li {
+			margin-bottom: 8px;
+		}
+
+		.done {
+			text-decoration: line-through;
+			color: gray;
+		}
+
+		button {
+			margin-left: 5px;
+		}
+	</style>
+
+</body>
+</html>

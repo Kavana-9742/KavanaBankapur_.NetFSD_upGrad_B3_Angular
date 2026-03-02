@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faq's</title>
+</head>
+
+<body>
+
+	<h3><b>Frequently Toggle Section</b></h3>
+	<hr/>
+
+	<div class="question">1. What is jQuery?</div>
+	<div class="answer">jQuery is a JavaScript library used for DOM manipulation and event handling.</div>
+	<br/>
+
+	<div class="question">2. Why use jQuery?</div>
+	<div class="answer">It simplifies JavaScript coding and reduces complexity.</div>
+	<br/>
+
+	<div class="question">3. What is slideToggle()?</div>
+	<div class="answer">slideToggle() shows or hides content with a sliding animation.</div>
+	<br/>
+
+	<div class="question">4. What is DOM?</div>
+	<div class="answer">DOM stands for Document Object Model. It represents the HTML structure of a webpage.</div>
+	<br/>
+
+	<div class="question">5. How to include jQuery?</div>
+	<div class="answer">You can include jQuery using a CDN link inside the script tag.</div>
+	<br/>
+
+	<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+	<script>
+		$(document).ready(function()
+		{
+			$(".answer").hide();
+			$(".question").click(function()
+			{
+				$(this).next(".answer").slideToggle(500);
+				$(this).toggleClass("active");
+			});
+		});
+	</script>
+
+	<style>
+		.question
+		{
+			background-color: lightgray;
+			padding: 8px;
+			cursor: pointer;
+			font-weight: bold;
+		}
+
+		.answer
+		{
+			padding: 8px;
+			background-color: #f9f9f9;
+		}
+
+		.active
+		{
+			background-color: lightblue;
+		}
+	</style>
+
+</body>
+</html>

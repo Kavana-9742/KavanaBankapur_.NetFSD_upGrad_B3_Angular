@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce website</title>
+</head>
+<body>
+
+	<h3><b>Shopping Cart</b></h3>
+	<hr/>
+
+	<h4>Count Items: <span id="cart">0</span></h4>
+	<hr/>
+
+	<div id="productContainer">
+
+		<div class="item">
+			<p><b>Laptop</b> - ₹50,000</p>
+			<button class="cartBtn" data-product="Laptop">Add to Cart</button>
+			<span class="status"></span>
+		</div>
+		<br/>
+
+		<div class="item">
+			<p><b>Mobile</b> - ₹20,000</p>
+			<button class="cartBtn" data-product="Mobile">Add to Cart</button>
+			<span class="status"></span>
+		</div>
+		<br/>
+
+		<div class="item">
+			<p><b>Headphones</b> - ₹3,000</p>
+			<button class="cartBtn" data-product="Headphones">Add to Cart</button>
+			<span class="status"></span>
+		</div>
+		<br/>
+
+		<div class="item">
+			<p><b>Smart Watch</b> - ₹8,000</p>
+			<button class="cartBtn" data-product="Smart Watch">Add to Cart</button>
+			<span class="status"></span>
+		</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+	<script>
+		$(document).ready(function()
+		{
+			let cartCount = 0;
+			$("#productContainer").on("click", ".cartBtn", function()
+			{
+				cartCount++;
+				$("#cart").text(cartCount);
+				$(this).prop("disabled", true);
+				$(this).text("Added");
+				$(this).attr("title", "Item already in cart");
+				let productName = $(this).attr("data-product");
+				$(this).next(".status").text("✔ " + productName + " added!");
+			});
+		});
+	</script>
+
+	<style>
+		.item {
+			border: 1px solid #aaa;
+			padding: 10px;
+			width: 300px;
+		}
+
+		.status {
+			color: green;
+			margin-left: 10px;
+			font-weight: bold;
+		}
+	</style>
+
+</body>
+</html>
