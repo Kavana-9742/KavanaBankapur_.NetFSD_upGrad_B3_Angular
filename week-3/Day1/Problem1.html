@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback form</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+    <h2><b>Student Feedback Form</b></h2><hr>
+
+        Name:<input type="text" id="n1" name="n1"><br><br>
+        Email:<input type="email" id="e1" name="e2"><br><br>
+        Course Rating:<select id="r1">
+            <option value="">--Select Rating--</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select><br><br>
+        Any Other Comments:<br>
+        <textarea id="comments"></textarea><br><br>
+        <input type="button" id="b1" value="Submit"/>
+        <p id="p1"></p>
+
+        <script>
+            $(document).ready(function(){
+                $("#b1").click(function(){
+                    let name = $("#n1").val();
+                    let email = $("#e1").val();
+                    if(name === "" || email === ""){
+                        $("#p1").text("Please enter all the details.");
+                    }
+                    else{
+                        $("#p1").text("Thank you for your feedback.");
+                        $("#n1").val("");
+                        $("#e1").val("");
+                        $("#r1").val("");
+                        $("#comments").val("");
+                    }
+                });
+            });
+        </script>
+    
+</body>
+</html>
