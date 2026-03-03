@@ -10,7 +10,7 @@ CREATE TABLE user_info(
 );
 
 CREATE TABLE event_details(
-	event_id INT PRIMARY KEY, 
+	event_id INT IDENTITY(100, 1) PRIMARY KEY, 
 	event_name VARCHAR(50) not null,
 	event_category VARCHAR(50) not null, 
 	event_date DATETIME not null,
