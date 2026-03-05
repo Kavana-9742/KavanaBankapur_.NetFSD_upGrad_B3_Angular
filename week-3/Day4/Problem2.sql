@@ -1,3 +1,7 @@
+CREATE DATABASE Retail;
+
+USE Retail;
+
 --Level-1: Problem 2 – Customer Activity Classification
 
 CREATE TABLE customers(
