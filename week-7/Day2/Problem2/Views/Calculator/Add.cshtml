@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Simple Calculator";
+}
+
+<h2>Simple Calculator - Addition</h2>
+
+<form method="post" action="/Calculator/Add">
+    <label>Number 1:</label>
+    <input type:"number" name="num1"/>
+    <br/><br/>
+
+    <label>Number 2:</label>
+    <input type:"number" name="num2"/>
+    <br/><br/>
+
+    <button type="Submit">Add</button>
+</form>
+
+@if (ViewData["Result"] != null)
+{
+    <h3>Result: @ViewData["Result"]</h3>
+}

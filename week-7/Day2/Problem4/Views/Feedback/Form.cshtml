@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Feedback Form";
+}
+
+<h2>Feedback Form</h2>
+
+<form method = "post" action="/Feedback/Submit">
+    <label>Name:</label>
+    <input type="text" name="name"/>
+    <br/><br/>
+
+    <label>Comments:</label>
+    <input type="text" name="comments"/>
+    <br/><br/>
+
+    <label>Rating(1-5):</label>
+    <input type="number" name="rating" min="1" max="5"/>
+    <br/><br/>
+
+    <button type="submit">Submit Feedback</button>
+</form>
+
+<br/>
+
+@if(ViewData["Message"] != null)
+{
+    <h3>@ViewData["UserName"]</h3>
+    <h3>@ViewData["Message"]</h3>
+}
