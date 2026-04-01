@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Product
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit">
+    <div>
+        Product Id:
+        <input asp-for ="ProductId" readonly />
+    </div><br/>
+
+    <div>
+        Product Name:
+        <input asp-for ="ProductName" />
+        <span asp-validation-for="ProductName"></span>
+    </div><br/>
+
+    <div>
+        Price:
+        <input asp-for="Price" />
+        <span asp-validation-for="Price"></span>
+    </div><br/>
+
+    <div>
+        Category:
+        <input asp-for="Category" />
+        <span asp-validation-for="Category"></span>
+    </div><br />
+
+    <button type="submit">Update</button>
+</form>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

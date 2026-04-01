@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using WebApplication3.Models
+@model Product
+
+<h2>Product Details</h2>
+
+<div>
+    <b>Product Id:</b> @Model.ProductId <br/>
+    <b>Product Name:</b> @Model.ProductName <br/>
+    <b>Price:</b> @Model.Price <br/>
+    <b>Category:</b> @Model.Category <br/>
+</div>
+
+<br/>
+
+<a asp-action="Index">Back to List</a>
