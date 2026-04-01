@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebApplication3.Models.Contact
+
+<h2>Contact Details</h2>
+
+@if (Model != null)
+{
+    <div>Id: @Model.ContactId</div><br/>
+    <div>Name: @Model.FirstName @Model.LastName</div><br/>
+    <div>Company: @Model.CompanyName</div><br/>
+    <div>Email: @Model.EmailId</div><br/>
+    <div>Mobile: @Model.MobileNo</div><br/>
+    <div>Designation: @Model.Designation</div><br/>
+}
+else
+{
+    <h3>Contact Not Found</h3>
+}
+
+<a asp-action="ShowContacts">Back</a>
