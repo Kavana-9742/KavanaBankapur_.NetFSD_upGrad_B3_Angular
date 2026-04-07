@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Movie_Catalog.Models.Movie
+
+<h2>Edit Movie</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    Title: <input asp-for="Title" /><br /><br/>
+    Genre: <input asp-for="Genre" /><br /><br/>
+    Release Date: <input asp-for="ReleaseDate" /><br /><br/>
+    Price: <input asp-for="Price" /><br /><br/>
+    Rating: <input asp-for="Rating" /><br /><br/>
+
+    <input type="submit" value="Update" />
+</form>
