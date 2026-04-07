@@ -1,0 +1,21 @@
+﻿@model ContactInfo
+
+@{
+    ViewData["Title"] = "Delete Contact";
+}
+
+<h2>Delete Contact</h2>
+
+<h4>Are you sure you want to delete this?</h4>
+
+<div>
+    <p><strong>Name:</strong> @Model.FirstName @Model.LastName</p>
+    <p><strong>Email:</strong> @Model.EmailId</p>
+    <p><strong>Company:</strong> @Model.CompanyName</p>
+</div>
+
+<form asp-action="DeleteConfirm">
+    <input type="hidden" asp-for="ContactId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="ShowContacts" class="btn btn-secondary">Cancel</a>
+</form>

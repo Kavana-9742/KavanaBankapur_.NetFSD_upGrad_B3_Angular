@@ -1,0 +1,71 @@
+﻿@model ContactInfo
+
+@{
+    ViewData["Title"] = "Edit Contact";
+}
+
+<h2>Edit Contact</h2>
+
+<form asp-action="EditContact">
+
+    <input type="hidden" asp-for="ContactId" />
+
+    <div>
+        <label>First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div>
+        <label>Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input asp-for="EmailId" class="form-control" />
+    </div>
+
+    <div>
+        <label>Mobile</label>
+        <input asp-for="MobileNo" class="form-control" />
+    </div>
+
+    <div>
+        <label>Designation</label>
+        <input asp-for="Designation" class="form-control" />
+    </div>
+
+    <!-- Company Dropdown -->
+    <div>
+        <label>Company</label>
+        <select asp-for="CompanyId" class="form-control">
+            @foreach (var c in ViewBag.Companies)
+            {
+                <option value="@c.CompanyId"
+                        selected="@(c.CompanyId == Model.CompanyId)">
+                    @c.CompanyName
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Department Dropdown -->
+    <div>
+        <label>Department</label>
+        <select asp-for="DepartmentId" class="form-control">
+            @foreach (var d in ViewBag.Departments)
+            {
+                <option value="@d.DepartmentId"
+                        selected="@(d.DepartmentId == Model.DepartmentId)">
+                    @d.DepartmentName
+                </option>
+            }
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+<br />
+<a asp-action="ShowContacts">Back to List</a>

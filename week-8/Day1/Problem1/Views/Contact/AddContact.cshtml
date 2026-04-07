@@ -1,0 +1,73 @@
+﻿@model ContactInfo
+
+@{
+    ViewData["Title"] = "Add Contact";
+}
+
+<h2>Add Contact</h2>
+
+<form asp-action="Create" method="post">
+    
+    <div>
+        <label>First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div>
+        <label>Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input asp-for="EmailId" class="form-control" />
+    </div>
+
+    <div>
+        <label>Mobile</label>
+        <input asp-for="MobileNo" class="form-control" />
+    </div>
+
+    <div>
+        <label>Designation</label>
+        <input asp-for="Designation" class="form-control" />
+    </div>
+
+    <!-- Company Dropdown -->
+    <div>
+        <label>Company</label>
+        <select asp-for="CompanyId" class="form-control">
+            <option value="">--Select Company--</option>
+
+            @if(ViewBag.Companies != null)
+            {
+                @foreach (var c in ViewBag.Companies)
+                {
+                    <option value="@c.CompanyId">@c.CompanyName</option>
+                }
+            }
+                
+        </select>
+    </div>
+
+    <!-- Department Dropdown -->
+    <div>
+        <label>Department</label>
+        <select asp-for="DepartmentId" class="form-control">
+            <option value="">--Select Department--</option>
+            @if (ViewBag.Departments != null)
+            {
+                foreach (var d in ViewBag.Departments)
+                {
+                    <option value="@d.DepartmentId">@d.DepartmentName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<br />
+<a asp-action="ShowContacts">Back to List</a>

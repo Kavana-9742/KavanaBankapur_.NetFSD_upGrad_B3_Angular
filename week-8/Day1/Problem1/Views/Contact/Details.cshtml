@@ -1,0 +1,20 @@
+﻿@model ContactInfo
+
+@{
+    ViewData["Title"] = "Contact Details";
+}
+
+<h2>Contact Details</h2>
+
+<div>
+    <p><strong>First Name:</strong> @Model.FirstName</p>
+    <p><strong>Last Name:</strong> @Model.LastName</p>
+    <p><strong>Email:</strong> @Model.EmailId</p>
+    <p><strong>Mobile:</strong> @Model.MobileNo</p>
+    <p><strong>Designation:</strong> @Model.Designation</p>
+    <p><strong>Company:</strong> @Model.CompanyName</p>
+    <p><strong>Department:</strong> @Model.DepartmentName</p>
+</div>
+
+<br />
+<a asp-action="ShowContacts">Back to List</a>
