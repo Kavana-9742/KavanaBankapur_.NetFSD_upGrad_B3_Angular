@@ -1,0 +1,29 @@
+<!-- src/app/components/contact-list/contact-list.component.html -->
+
+<h2>Contact List</h2>
+
+<!-- ADD CONTACT FORM -->
+<div>
+  <input [(ngModel)]="newName" placeholder="Name" />
+  <input [(ngModel)]="newEmail" placeholder="Email" />
+  <input [(ngModel)]="newPhone" placeholder="Phone" />
+  <button (click)="addContact()">Add Contact</button>
+</div>
+
+<hr>
+
+<!-- CONTACT LIST -->
+<ul>
+  <li *ngFor="let contact of contacts">
+    {{ contact.name }} - {{ contact.email }}
+    <button (click)="viewDetails(contact.id)">View</button>
+  </li>
+</ul>
+
+<hr>
+
+<!-- CONTACT DETAILS -->
+<app-contact-detail 
+  *ngIf="selectedContactId !== null"
+  [contactId]="selectedContactId">
+</app-contact-detail>

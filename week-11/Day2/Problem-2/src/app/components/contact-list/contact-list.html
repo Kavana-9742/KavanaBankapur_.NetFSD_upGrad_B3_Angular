@@ -1,0 +1,12 @@
+<h2>Contacts</h2>
+
+<ul *ngIf="contacts.length > 0; else noData">
+  <li *ngFor="let c of contacts">
+    {{ c.name }} - {{ c.email }}
+    <a [routerLink]="['/contact', c.id]">View</a>
+  </li>
+</ul>
+
+<ng-template #noData>
+  <p>No contacts found</p>
+</ng-template>

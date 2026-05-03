@@ -1,0 +1,16 @@
+<h2>Contact Management App</h2>
+
+<button (click)="toggleLogin()">
+  {{ authService.isLoggedIn ? 'Logout' : 'Login' }}
+</button>
+
+<hr>
+
+<nav>
+  <a routerLink="/contacts">Contacts</a> |
+  <a routerLink="/add-contact">Add Contact</a>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,21 @@
+<h3>Add Contact (Protected)</h3>
+
+<form (ngSubmit)="save()" #form="ngForm">
+
+  <input 
+    type="text"
+    name="name"
+    [(ngModel)]="contact.name"
+    required
+    placeholder="Enter Name"
+  />
+
+  <div *ngIf="form.submitted && !contact.name">
+    Name is required
+  </div>
+
+  <br><br>
+
+  <button type="submit">Save</button>
+
+</form>
