@@ -1,0 +1,83 @@
+<h2>Reactive Contact Form</h2>
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+  <!-- Name -->
+  <input type="text" formControlName="name" placeholder="Name" />
+
+  @if (f.name.invalid && (f.name.touched || f.name.dirty)) {
+    <p class="error">Name is required</p>
+  }
+
+  <br><br>
+
+  <!-- Email -->
+  <input type="email" formControlName="email" placeholder="Email" />
+
+  @if (f.email.invalid && (f.email.touched || f.email.dirty)) {
+    <p class="error">
+      @if (f.email.errors?.['required']) {
+        Email is required
+      } @else {
+        Enter a valid email
+      }
+    </p>
+  }
+
+  <br><br>
+
+  <!-- Phone -->
+  <input type="text" formControlName="phone" placeholder="Phone" />
+
+  @if (f.phone.invalid && (f.phone.touched || f.phone.dirty)) {
+    <p class="error">
+      @if (f.phone.errors?.['required']) {
+        Phone is required
+      } @else {
+        Minimum 10 digits required
+      }
+    </p>
+  }
+
+  <br><br>
+
+  <!-- Status -->
+  <label>
+    <input type="checkbox" formControlName="isActive" />
+    Active
+  </label>
+
+  <br><br>
+
+  <button type="submit">Add Contact</button>
+
+</form>
+
+<hr>
+
+<h3>Contact List</h3>
+
+@if (contacts.length === 0) {
+  <p>No Contacts Available</p>
+} @else {
+
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Status</th>
+    </tr>
+
+    @for (c of contacts; track c.contactId) {
+      <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.isActive ? 'Active' : 'Inactive' }}</td>
+      </tr>
+    }
+
+  </table>
+
+}
