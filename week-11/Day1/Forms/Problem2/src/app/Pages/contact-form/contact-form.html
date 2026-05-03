@@ -1,0 +1,100 @@
+<h2>Add Contact</h2>
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+
+  <!-- Name -->
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="contact.name"
+    required
+    #name="ngModel"
+    placeholder="Enter Name"
+  />
+
+  @if (name.invalid && (name.touched || name.dirty)) {
+    <p class="error">Name is required</p>
+  }
+
+  <br><br>
+
+  <!-- Email -->
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="contact.email"
+    required
+    email
+    #email="ngModel"
+    placeholder="Enter Email"
+  />
+
+  @if (email.invalid && (email.touched || email.dirty)) {
+    <p class="error">
+      @if (email.errors?.['required']) {
+        Email is required
+      } @else {
+        Invalid email format
+      }
+    </p>
+  }
+
+  <br><br>
+
+  <!-- Phone -->
+  <input
+    type="text"
+    name="phone"
+    [(ngModel)]="contact.phone"
+    required
+    minlength="10"
+    #phone="ngModel"
+    placeholder="Enter Phone"
+  />
+
+  @if (phone.invalid && (phone.touched || phone.dirty)) {
+    <p class="error">
+      @if (phone.errors?.['required']) {
+        Phone is required
+      } @else {
+        Minimum 10 digits required
+      }
+    </p>
+  }
+
+  <br><br>
+
+  <!-- Status -->
+  <label>
+    <input
+      type="checkbox"
+      name="isActive"
+      [(ngModel)]="contact.isActive"
+    />
+    Active
+  </label>
+
+  <br><br>
+
+  <button type="submit">Add Contact</button>
+
+</form>
+
+<hr>
+
+<h3>Contact List</h3>
+
+@if (contacts.length === 0) {
+  <p>No Contacts Available</p>
+} @else {
+
+  <ul>
+    @for (c of contacts; track c.contactId) {
+      <li>
+        {{ c.name }} | {{ c.email }} | {{ c.phone }} |
+        {{ c.isActive ? 'Active' : 'Inactive' }}
+      </li>
+    }
+  </ul>
+
+}
