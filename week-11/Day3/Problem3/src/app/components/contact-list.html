@@ -1,0 +1,14 @@
+<h2>Contact List</h2>
+
+<ul>
+  @for (c of contacts; track c.id) {
+    <li>
+      {{ c.name }} - {{ c.email }}
+      <button (click)="select(c.id)">View</button>
+    </li>
+  }
+</ul>
+
+@if (selectedId !== null) {
+  <contact-detail [id]="selectedId"></contact-detail>
+}

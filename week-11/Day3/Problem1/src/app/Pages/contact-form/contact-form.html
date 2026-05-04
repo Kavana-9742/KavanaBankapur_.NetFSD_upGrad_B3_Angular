@@ -1,0 +1,29 @@
+<h2>{{ isEdit ? 'Edit' : 'Add' }} Contact</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <input formControlName="name" placeholder="Name" />
+  @if (f.name.invalid && f.name.touched) {
+    <p>Name required</p>
+  }
+
+  <input formControlName="email" placeholder="Email" />
+  @if (f.email.invalid && f.email.touched) {
+    <p>Valid email required</p>
+  }
+
+  <input formControlName="phone" placeholder="Phone" />
+  @if (f.phone.invalid && f.phone.touched) {
+    <p>Min 10 digits</p>
+  }
+
+  <label>
+    <input type="checkbox" formControlName="isActive" />
+    Active
+  </label>
+
+  <br><br>
+
+  <button type="submit">Save</button>
+
+</form>

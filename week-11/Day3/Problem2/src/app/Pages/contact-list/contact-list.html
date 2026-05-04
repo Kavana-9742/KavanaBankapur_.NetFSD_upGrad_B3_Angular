@@ -1,0 +1,10 @@
+<h3>Contact List (Public)</h3>
+
+<ul>
+  @for (c of contacts; track c.id) {
+    <li>
+      {{ c.name }}
+      <button [routerLink]="['/contact', c.id]">View</button>
+    </li>
+  }
+</ul>

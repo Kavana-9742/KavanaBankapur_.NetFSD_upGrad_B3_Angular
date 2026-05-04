@@ -1,0 +1,23 @@
+<h2>Contacts</h2>
+
+@if (loading) {
+  <p>Loading...</p>
+} @else if (error) {
+  <p>{{ error }}</p>
+} @else {
+
+  <button routerLink="/add">Add Contact</button>
+
+  <ul>
+    @for (c of contacts; track c.contactId) {
+      <li>
+        {{ c.name }} - {{ c.email }}
+
+        <button [routerLink]="['/detail', c.contactId]">View</button>
+        <button [routerLink]="['/edit', c.contactId]">Edit</button>
+        <button (click)="delete(c.contactId)">Delete</button>
+      </li>
+    }
+  </ul>
+
+}
